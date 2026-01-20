@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Reviews/Testimonials – Laila's Treasures</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/footer_icons.css" />
+</head>
+<body>
+
+    <div class="nav">
+      <div class="inner">
+        <a class="brand" href="index.html"><span class="dot"></span> Laila's Treasures</a>
+        <div class="menu">
+          <a href="index.html" class="">Home</a>
+          <a href="all-grillz.html" class="">All Grillz</a>
+          <a href="contact.html" class="">Contact Us</a>
+          <a href="reviews.html" class="active">Reviews</a>
+          <a href="cart.html" class="">Cart</a>
+          <a href="messenger.html" class="">Messenger</a>
+        </div>
+      </div>
+    </div>
+    
+
+<section class="container">
+  <h2>Reviews & Testimonials</h2>
+  <div id="reviews" class="grid"></div>
+  <hr/>
+  <h3>Leave a Review</h3>
+  <form id="reviewForm" onsubmit="return LT.submitReview(event)">
+    <label>Name</label>
+    <input class="input" id="r_name" required />
+    <label>Rating (1-5)</label>
+    <select id="r_rating">
+      <option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>
+    </select>
+    <label>Your review</label>
+    <textarea class="input" id="r_text" rows="4" required></textarea>
+    <div class="row"><button class="btn" type="submit">Submit</button><small>Reviews require admin approval.</small></div>
+  </form>
+</section>
+
+<section class = "container banner-zone" data-banner-zone="footer-top"></section>
+
+<footer class="footer">
+  <div class="inner">
+    <div>© 2025 Laila's Treasures</div>
+      <a href="admin.html" id="ownerLogin" class="owner-btn">Admin</a>
+    <div class="socials" id="footerSocials"></div>
+  </div>
+</footer>
+ 
+<script src="assets/js/data.js"></script>
+<script>window.LT_USE_API = true</script>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/collections.js"></script>
+<script src="assets/js/app_plus_v3.js"></script>
+</body>
+</html>

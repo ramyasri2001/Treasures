@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Contact Us – Laila's Treasures</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/footer_icons.css" />
+</head>
+<body>
+
+    <div class="nav">
+      <div class="inner">
+        <a class="brand" href="index.html"><span class="dot"></span> Laila's Treasures</a>
+        <div class="menu">
+          <a href="index.html" class="">Home</a>
+          <a href="all-grillz.html" class="">All Grillz</a>
+          <a href="reviews.html" class="">Reviews</a>
+          <a href="cart.html" class="">Cart</a>
+          <a href="messenger.html" class="">Messenger</a>
+          <a href="login.html">Login</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+    
+
+<section class="container">
+  <h2>Contact Us</h2>
+  <p class="muted">Have questions? Send us a message. We’ll reply in Messenger.</p>
+  <form id="contactForm" onsubmit="return LT.submitContact(event)">
+    <label>Your Name</label>
+    <input class="input" id="c_name" required />
+    <label>Email</label>
+    <input type="email" class="input" id="c_email" required />
+    <label>Message</label>
+    <textarea class="input" id="c_msg" rows="5" required></textarea>
+    <div class="row"><button class="btn" type="submit">Send</button></div>
+  </form>
+</section>
+
+<section class = "container banner-zone" data-banner-zone="footer-top"></section>
+
+<footer class="footer">
+  <div class="inner">
+    <div>© 2025 Laila's Treasures</div>
+      <a href="admin.html" id="ownerLogin" class="owner-btn">Admin</a>
+    <div class="socials" id="footerSocials"></div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script>window.LT_USE_API = true</script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/collections.js"></script>
+<script src="assets/js/app_plus_v3.js"></script>
+<script src="assets/js/auth.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const link = document.getElementById('navAuth');
+    if (!link || !window.LTAuth) return;
+
+    const user = LTAuth.getUser && LTAuth.getUser();
+    if (user) {
+      // Logged in → show Logout
+      link.textContent = 'Logout';
+      link.href = '#';
+      link.onclick = (e) => {
+        e.preventDefault();
+        LTAuth.logout();
+      };
+    } else {
+      // Guest → show Login
+      link.textContent = 'Login';
+      link.href = 'login.html';
+      link.onclick = null;
+    }
+  });
+</script>
+</body>
+</html>

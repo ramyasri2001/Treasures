@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Messenger – Laila's Treasures</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/footer_icons.css" />
+</head>
+<body>
+
+    <div class="nav">
+      <div class="inner">
+        <a class="brand" href="index.html"><span class="dot"></span> Laila's Treasures</a>
+        <div class="menu">
+          <a href="index.html" class="">Home</a>
+          <a href="all-grillz.html" class="">All Grillz</a>
+          <a href="contact.html" class="">Contact Us</a>
+          <a href="reviews.html" class="">Reviews</a>
+          <a href="cart.html" class="">Cart</a>
+          <a href="messenger.html" class="active">Messenger</a>
+        </div>
+      </div>
+    </div>
+    
+
+<section class="container">
+  <h2>Messenger</h2>
+  <p class="muted">Enter your email to view and send messages with us.</p>
+  <div class="row">
+    <input class="input" id="m_email" placeholder="your@email.com" style="max-width:320px"/>
+    <button class="btn" onclick="LT.loadThread()">Load</button>
+  </div>
+  <div id="thread" class="card" style="margin-top:12px"><div class="body" id="threadBody">No messages.</div></div>
+  <form id="m_form" onsubmit="return LT.sendMessage(event)" class="row" style="margin-top:12px">
+    <input class="input" id="m_text" placeholder="Type a message..." />
+    <button class="btn">Send</button>
+  </form>
+</section>
+
+<section class = "container banner-zone" data-banner-zone="footer-top"></section>
+<footer class="footer">
+  <div class="inner">
+    <div>© 2025 Laila's Treasures</div>
+      <a href="admin.html" id="ownerLogin" class="owner-btn">Admin</a>
+    <div class="socials" id="footerSocials"></div>
+  </div>
+</footer>
+<script src="assets/js/data.js"></script>
+<script>window.LT_USE_API = true</script>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/collections.js"></script>
+<script src="assets/js/app_plus_v3.js"></script>
+</body>
+</html>

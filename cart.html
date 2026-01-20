@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cart – Laila's Treasures</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/footer_icons.css" />
+</head>
+<body>
+
+    <div class="nav">
+      <div class="inner">
+        <a class="brand" href="index.html"><span class="dot"></span> Laila's Treasures</a>
+        <div class="menu">
+          <a href="index.html" class="">Home</a>
+          <a href="all-grillz.html" class="">All Grillz</a>
+          <a href="contact.html" class="">Contact Us</a>
+          <a href="reviews.html" class="">Reviews</a>
+          <a href="messenger.html" class="">Messenger</a>
+        </div>
+      </div>
+    </div>
+
+<section class="container">
+  <h2>Saved Designs (Cart)</h2>
+  <div id="cartItems"></div>
+  <div class="row" style="justify-content:space-between;margin-top:16px">
+    <div class="price" id="cartTotal">$0.00</div>
+    <div class="row">
+      <button class="btn ghost" onclick="LT.clearCart()">Clear Cart</button>
+      <button class="btn" onclick="LT.checkout()">Send Inquiry</button>
+    </div>
+  </div>
+</section>
+<section class = "container banner-zone" data-banner-zone="footer-top"></section>
+
+<footer class="footer">
+  <div class="inner">
+    <div>© 2025 Laila's Treasures</div>
+      <a href="admin.html" id="ownerLogin" class="owner-btn">Admin</a>
+    <div class="socials" id="footerSocials"></div>
+  </div>
+</footer>
+<script src="assets/js/data.js"></script>
+<script>window.LT_USE_API = true</script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/collections.js"></script>
+<script src="assets/js/app_plus_v3.js"></script>
+<script src="assets/js/auth.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const link = document.getElementById('navAuth');
+    if (!link || !window.LTAuth) return;
+
+    const user = LTAuth.getUser && LTAuth.getUser();
+    if (user) {
+      // Logged in → show Logout
+      link.textContent = 'Logout';
+      link.href = '#';
+      link.onclick = (e) => {
+        e.preventDefault();
+        LTAuth.logout();
+      };
+    } else {
+      // Guest → show Login
+      link.textContent = 'Login';
+      link.href = 'login.html';
+      link.onclick = null;
+    }
+  });
+</script>
+</body>
+</html>

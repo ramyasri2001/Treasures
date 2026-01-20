@@ -1,0 +1,5 @@
+
+/* Simple social icons using pure CSS shapes/text */
+.footer .socials{display:flex;gap:10px;align-items:center}
+.footer .socials a{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#1f1f24;border:1px solid #2a2a31;color:#f3f3f5;font-size:14px}
+.footer .socials a:hover{background:#ffd54d;color:#111}

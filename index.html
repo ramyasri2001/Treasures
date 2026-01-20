@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Home – Laila's Treasures</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/footer_icons.css" />
+</head>
+<body>
+
+    <div class="nav">
+      <div class="inner">
+        <a class="brand" href="index.html"><span class="dot"></span> Laila's Treasures</a>
+        <div class="menu">
+          <a href="all-grillz.html" class="">All Grillz</a>
+          <a href="contact.html" class="">Contact Us</a>
+          <a href="reviews.html" class="">Reviews</a>
+          <a href="cart.html" class="">Cart</a>
+          <a href="messenger.html" class="">Messenger</a>
+          <a id="navAuth" href="login.html">Login</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+    
+
+<section class="hero container">
+    <div class="hero-slider" data-banner-zone="hero"></div>
+  <div class="grid">
+    <div class="card" style="grid-column: span 12;">
+      <div class="body">
+        <h1>Customise Grillz, Your Way.</h1>
+        <p class="sub">Choose your metal, style, and tooth count. Browse everything in All Grillz,
+        then save to your cart. When you’re ready, send us your selections via Messenger or Contact Us.
+        Payments are handled offline.</p>
+        <div class="row" style="margin-top:10px">
+          <a class="btn" href="all-grillz.html">Browse All Grillz</a>
+          <a class="btn ghost" href="custom-orders.html">Request a Custom Design</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container banner-zone" data-banner-zone="mid-wide"></section>
+
+ <!-- Add this block somewhere on Home, e.g. above Featured products -->
+<section class="container">
+  <h2>Featured Collections</h2>
+  <div id="featuredCollections" class="grid"></div>
+</section>
+
+
+
+<section class = "container banner-zone" data-banner-zone="footer-top"></section>
+
+<footer class="footer">
+  <div class="inner">
+    <div>© 2025 Laila's Treasures</div>
+      <a href="admin.html" id="ownerLogin" class="owner-btn">Admin</a>
+    <div class="socials" id="footerSocials"></div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script>window.LT_USE_API = true</script>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/collections.js"></script>
+<script src="assets/js/app_plus_v3.js"></script>
+<script src="assets/js/auth.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const link = document.getElementById('navAuth');
+    if (!link || !window.LTAuth) return;
+
+    const user = LTAuth.getUser && LTAuth.getUser();
+    if (user) {
+      // Logged in → show Logout
+      link.textContent = 'Logout';
+      link.href = '#';
+      link.onclick = (e) => {
+        e.preventDefault();
+        LTAuth.logout();
+      };
+    } else {
+      // Guest → show Login
+      link.textContent = 'Login';
+      link.href = 'login.html';
+      link.onclick = null;
+    }
+  });
+</script>
+
+</div>
+</body>
+</html>

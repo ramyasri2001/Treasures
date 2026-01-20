@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign Up – Laila's Treasures</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/footer_icons.css" />
+</head>
+<body>
+  <div class="nav">
+    <div class="inner">
+      <a class="brand" href="index.html"><span class="dot"></span> Laila's Treasures</a>
+      <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="all-grillz.html">All Grillz</a>
+        <a href="custom-orders.html">Custom Orders</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="cart.html">Cart</a>
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="container" style="max-width:480px;margin-top:40px">
+    <h1>Create your account</h1>
+    <p class="muted">Save your cart and messages across devices.</p>
+
+    <form id="signupForm" class="card" style="padding:20px">
+      <label>Name</label>
+      <input id="su_name" class="input" type="text" required />
+
+      <label style="margin-top:10px">Email</label>
+      <input id="su_email" class="input" type="email" required />
+
+      <label style="margin-top:10px">Password</label>
+      <input id="su_password" class="input" type="password" required />
+
+      <label style="margin-top:10px">Confirm Password</label>
+      <input id="su_password2" class="input" type="password" required />
+
+      <button class="btn" type="submit" style="margin-top:16px;width:100%">Sign Up</button>
+      <p class="muted" style="margin-top:10px">
+        Already have an account? <a href="login.html">Log in</a>
+      </p>
+
+      <p id="su_msg" class="muted" style="margin-top:8px"></p>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <div class="inner">
+      <div>©️ 2025 Laila's Treasures</div>
+      <a href="admin.html" id="ownerLogin" class="owner-btn">Admin</a>
+      <div class="socials" id="footerSocials"></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/app_plus_v3.js"></script>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const msg  = document.getElementById('su_msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = '';
+
+      const name  = document.getElementById('su_name').value.trim();
+      const email = document.getElementById('su_email').value.trim();
+      const p1    = document.getElementById('su_password').value;
+      const p2    = document.getElementById('su_password2').value;
+
+      if (p1 !== p2) {
+        msg.textContent = 'Passwords do not match.';
+        return;
+      }
+
+      try {
+        const user = await LTAuth.signup(name, email, p1);
+        msg.textContent = 'Signup successful! Redirecting...';
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1000);
+      } catch (err) {
+        console.error(err);
+        msg.textContent = err.message || 'Signup failed.';
+      }
+    });
+  </script>
+</body>
+</html>

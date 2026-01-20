@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin – Laila's Treasures</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/footer_icons.css" />
+</head>
+<body>
+  <!-- =============== NAVBAR =============== -->
+  <div class="nav">
+    <div class="inner">
+      <a class="brand" href="index.html"><span class="dot"></span> Laila's Treasures</a>
+      <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="all-grillz.html">All Grillz</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="cart.html">Cart</a>
+        <a href="messenger.html">Messenger</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== ADMIN SECTION =============== -->
+  <section class="container">
+    <h2>Admin Panel</h2>
+
+    <!-- ---------- LOGIN ---------- -->
+    <div id="adminLogin" class="card">
+      <div class="body">
+        <h3>Sign In</h3>
+        <div class="row">
+          <input id="adminPass" class="input" type="password" placeholder="Password (default: admin123)" />
+          <button class="btn" onclick="window.LT.adminLogin()">Login</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- APP BODY ---------- -->
+    <div id="adminApp" class="hidden">
+      <div class="row" style="justify-content:space-between">
+        <div class="row" style="gap:6px">
+          <button class="btn" onclick="LT.showTab('products')">Products</button>
+          <button class="btn ghost" onclick="LT.showTab('reviews')">Reviews</button>
+          <button class="btn ghost" onclick="LT.showTab('messages')">Messages</button>
+          <button class="btn ghost" onclick="LT.showTab('banners')">Banners</button>
+          <button class="btn ghost" onclick="LT.showTab('categories')">Collections</button>
+          <button class="btn ghost" onclick="LT.showTab('settings')">Settings</button>
+        </div>
+        <button class="btn danger" onclick="LT.adminLogout()">Logout</button>
+      </div>
+
+      <!-- ---------- PRODUCTS ---------- -->
+      <div id="tab_products" class="card" style="margin-top:12px">
+        <div class="body">
+          <div class="row" style="justify-content:space-between">
+            <h3>Products</h3>
+            <button class="btn" onclick="LT.openProductForm()">Add Product</button>
+          </div>
+          <table id="prodTable" class="table"></table>
+        </div>
+      </div>
+
+      <!-- ---------- REVIEWS ---------- -->
+      <div id="tab_reviews" class="card hidden" style="margin-top:12px">
+        <div class="body">
+          <h3>Reviews</h3>
+          <table id="revTable" class="table"></table>
+        </div>
+      </div>
+
+      <!-- ---------- MESSAGES ---------- -->
+      <div id="tab_messages" class="card hidden" style="margin-top:12px">
+        <div class="body">
+          <h3>Messages</h3>
+          <table id="msgTable" class="table"></table>
+        </div>
+      </div>
+
+      <!-- ---------- BANNERS ---------- -->
+      <div id="tab_banners" class="card hidden" style="margin-top:12px">
+        <div class="body">
+          <div class="row" style="justify-content:space-between">
+            <h3>Banners (Hero / Homepage)</h3>
+            <button class="btn" onclick="LT.openBannerForm()">Add Banner</button>
+          </div>
+          <table id="banTable" class="table"></table>
+        </div>
+      </div>
+
+      <!-- ---------- COLLECTIONS ---------- -->
+      <div id="tab_categories" class="card hidden" style="margin-top:12px">
+        <div class="body">
+          <div class="row" style="justify-content:space-between">
+            <h3>Collections</h3>
+            <button class="btn" onclick="LT.openCollectionForm()">Add Collection</button>
+          </div>
+          <table id="colTable" class="table"></table>
+        </div>
+      </div>
+
+      <!-- ---------- SETTINGS ---------- -->
+      <div id="tab_settings" class="card hidden" style="margin-top:12px">
+        <div class="body">
+          <h3>Settings</h3>
+
+          <label>Change Admin Password</label>
+          <div class="row">
+            <input id="set_pass" class="input" type="password" placeholder="New password" />
+            <button class="btn" onclick="LT.setPassword()">Update</button>
+          </div>
+
+          <hr />
+          <label>Homepage Tagline</label>
+          <input id="set_sub" class="input" placeholder="Tagline for homepage" />
+          <div class="row" style="gap:10px;margin:8px 0">
+            <button class="btn" onclick="LT.setSubtitle()">Save Tagline</button>
+          </div>
+
+          <hr />
+          <h3>Social Links</h3>
+          <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:12px">
+            <div>
+              <label>Instagram</label><input id="soc_instagram" class="input" placeholder="https://instagram.com/..." />
+              <label>TikTok</label><input id="soc_tiktok" class="input" placeholder="https://tiktok.com/@..." />
+            </div>
+            <div>
+              <label>Facebook</label><input id="soc_facebook" class="input" placeholder="https://facebook.com/..." />
+              <label>YouTube</label><input id="soc_youtube" class="input" placeholder="https://youtube.com/..." />
+            </div>
+          </div>
+          <div class="row" style="gap:10px;margin-top:8px">
+            <button class="btn" onclick="LT.saveSocialsToAWS()">Save Socials</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- PRODUCT MODAL ---------- -->
+    <div id="productForm" class="card hidden"
+         style="position:fixed;inset:0;max-width:700px;margin:auto;height:max-content;z-index:10;background:white">
+      <div class="body">
+        <div class="row" style="justify-content:space-between">
+          <h3 id="pf_title">New Product</h3>
+          <button class="btn ghost" onclick="LT.closeProductForm()">Close</button>
+        </div>
+ <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:16px">
+  <!-- LEFT COLUMN -->
+  <div>
+    <label>Name</label>
+    <input id="pf_name" class="input" />
+
+    <label>Category</label>
+    <input id="pf_cat" class="input" placeholder="Solid, Diamond cuts, etc." />
+
+    <label>Base Price (per tooth)</label>
+    <input id="pf_price" class="input" type="number" min="0" step="1" />
+
+    <label>Metal Family</label>
+    <select id="pf_family" class="input">
+      <option value="gold">Gold</option>
+      <option value="silver">Silver</option>
+      <option value="rosegold">Rose Gold</option>
+    </select>
+
+    <label>Gold Prices (per tooth)</label>
+    <input id="pf_gold8"           class="input" type="number" min="0" step="1" placeholder="8K Gold Price" />
+    <input id="pf_gold10"          class="input" type="number" min="0" step="1" placeholder="10K Gold Price" />
+    <input id="pf_gold14"          class="input" type="number" min="0" step="1" placeholder="14K Gold Price" />
+    <input id="pf_gold24"          class="input" type="number" min="0" step="1" placeholder="24K Gold Polish Price" />
+    <input id="pf_goldPlated"   class="input" type="number" min="0" step="1" placeholder="Gold Plated Price" />
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div>
+    <label>Description</label>
+    <textarea id="pf_desc" class="input" rows="5"></textarea>
+
+    <label>Image URL</label>
+    <input id="pf_img" class="input" placeholder="https://..." />
+
+    <label>Active</label>
+    <select id="pf_active" class="input">
+      <option value="true">true</option>
+      <option value="false">false</option>
+    </select>
+
+ <label>Silver Price (per tooth)</label>
+    <input id="pf_silverPrice"       class="input" type="number" min="0" step="1" placeholder="Silver Price" />
+
+    <label>Rose Gold Prices (per tooth)</label>
+    <input id="pf_rosePrice"         class="input" type="number" min="0" step="1" placeholder="Rose Gold Price" />
+    <input id="pf_rosePlated"  class="input" type="number" min="0" step="1" placeholder="Rose Gold Plated Price" />
+        <!-- Collections checklist placeholder (populated by JS) -->
+        <div id="pf_collections_wrap" style="margin-top:10px">
+          <label>Collections</label>
+          <div id="pf_collections"
+               class="grid"
+               style="grid-template-columns:repeat(2,1fr);gap:8px">
+            <span class="muted">Loading collections…</span>
+          </div>
+          <small class="muted">Check every collection this product should appear in.</small>
+        </div>
+      </div>
+    </div>
+        <div class="row" style="margin-top:10px;justify-content:flex-end">
+          <button class="btn" onclick="LT.saveProduct()">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- COLLECTION MODAL ---------- -->
+    <div id="collectionForm" class="card hidden"
+         style="position:fixed;inset:0;max-width:700px;margin:auto;height:max-content;z-index:10;background:white">
+      <div class="body">
+        <div class="row" style="justify-content:space-between">
+          <h3 id="co_title">New Collection</h3>
+          <button class="btn ghost" onclick="LT.closeCollectionForm()">Close</button>
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:12px">
+          <div>
+            <label>Name</label><input id="co_name" class="input" placeholder="Classic Collection" />
+          </div>
+          <div>
+            <label>Slug</label><input id="co_slug" class="input" placeholder="classic" />
+          </div>
+          <div>
+            <label>Tagline</label><input id="co_tagline" class="input" placeholder="Short tagline" />
+          </div>
+          <div>
+            <label>Cover Image URL</label><input id="co_cover" class="input" placeholder="https://..." />
+          </div>
+          <div>
+            <label>Order</label><input id="co_order" type="number" class="input" value="1" min="0" />
+          </div>
+          <div>
+            <label>Active</label>
+            <select id="co_active" class="input"><option value="true">Active</option><option value="false">Inactive</option></select>
+          </div>
+        </div>
+        <div class="row" style="margin-top:10px;justify-content:flex-end">
+          <button class="btn ghost" onclick="LT.closeCollectionForm()">Cancel</button>
+          <button class="btn" onclick="LT.saveCollection()">Save</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- =============== FOOTER =============== -->
+  <footer class="footer">
+    <div class="inner">
+      <div>©️ 2025 Laila's Treasures</div>
+      <div id="footerSocials" class="socials"></div>
+    </div>
+  </footer>
+
+  <!-- =============== SCRIPTS =============== -->
+  <!-- set API flag before scripts -->
+  <script>window.LT_USE_API = true;</script>
+
+  <script src="assets/js/data.js"></script> 
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/collections.js"></script>
+  <script src="assets/js/app_plus_v3.js"></script>
+</body>
+</html>

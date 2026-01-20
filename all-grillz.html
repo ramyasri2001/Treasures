@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>All Grillz – Laila's Treasures</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/footer_icons.css" />
+
+</head>
+<body>
+
+    <div class="nav">
+      <div class="inner">
+        <a class="brand" href="index.html"><span class="dot"></span> Laila's Treasures</a>
+        <div class="menu">
+          <a href="index.html" class="">Home</a>
+          <a href="contact.html" class="">Contact Us</a>
+          <a href="reviews.html" class="">Reviews</a>
+          <a href="cart.html" class="">Cart</a>
+          <a href="messenger.html" class="">Messenger</a>
+          <a id="navAuth" href="login.html">Login</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+    
+
+<section class="container">
+  <div class="row" style="justify-content:space-between">
+    <h2>All Grillz</h2>
+    <div class="row">
+      <input class="input" id="search" placeholder="Search by name or style..." />
+      <select id="filterCategory">
+        <option value="">All Categories</option>
+      </select>
+    </div>
+  </div>
+  <div id="products" class="grid" style="margin-top:12px"></div>
+</section>
+<section class = "container banner-zone" data-banner-zone="sidebar"></section>
+<div id="configModal" class="card hidden" style="position:fixed;inset:0;max-width:560px;margin:auto;height:max-content">
+  <div class="body">
+    <div class="row" style="justify-content:space-between">
+      <h3>Configure Grillz</h3>
+      <button class="btn ghost" onclick="LT.closeConfig()">Close</button>
+    </div>
+    <div id="configBody"></div>
+  </div>
+</div>
+
+<section class = "container banner-zone" data-banner-zone="footer-top"></section>
+<footer class="footer">
+  <div class="inner">
+    <div>© 2025 Laila's Treasures</div>
+      <a href="admin.html" id="ownerLogin" class="owner-btn">Admin</a>
+    <div class="socials" id="footerSocials"></div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script>window.LT_USE_API = true</script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/collections.js"></script>
+<script src="assets/js/app_plus_v3.js"></script>
+<script src="assets/js/auth.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const link = document.getElementById('navAuth');
+    if (!link || !window.LTAuth) return;
+
+    const user = LTAuth.getUser && LTAuth.getUser();
+    if (user) {
+      // Logged in → show Logout
+      link.textContent = 'Logout';
+      link.href = '#';
+      link.onclick = (e) => {
+        e.preventDefault();
+        LTAuth.logout();
+      };
+    } else {
+      // Guest → show Login
+      link.textContent = 'Login';
+      link.href = 'login.html';
+      link.onclick = null;
+    }
+  });
+</script>
+</body>
+</html>

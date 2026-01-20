@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login – Laila's Treasures</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/footer_icons.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="inner">
+      <a class="brand" href="index.html"><span class="dot"></span> Laila's Treasures</a>
+      <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="all-grillz.html">All Grillz</a>
+        <a href="custom-orders.html">Custom Orders</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="cart.html">Cart</a>
+        <a href="signup.html">Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN FORM -->
+  <section class="container" style="max-width:480px;margin-top:40px">
+    <h1>Login</h1>
+    <p class="muted">Access your saved cart and messages.</p>
+
+    <form id="loginForm" class="card" style="padding:20px">
+      <label>Email</label>
+      <input id="li_email" class="input" type="email" required />
+
+      <label style="margin-top:10px">Password</label>
+      <input id="li_password" class="input" type="password" required />
+
+      <button class="btn" type="submit" style="margin-top:16px;width:100%">
+        Login
+      </button>
+
+      <p class="muted" style="margin-top:10px">
+        New here? <a href="signup.html">Create an account</a>
+      </p>
+
+      <p id="li_msg" class="muted" style="margin-top:8px"></p>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="inner">
+      <div>©️ 2025 Laila's Treasures</div>
+      <a href="admin.html" id="ownerLogin" class="owner-btn">Admin</a>
+      <div class="socials" id="footerSocials"></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/app_plus_v3.js"></script>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const msg  = document.getElementById('li_msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = '';
+
+      const email = document.getElementById('li_email').value.trim();
+      const password = document.getElementById('li_password').value;
+
+      try {
+        const user = await LTAuth.login(email, password);
+        msg.textContent = 'Login successful! Redirecting...';
+
+        // redirect to home or cart
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1000);
+
+      } catch (err) {
+        console.error(err);
+        msg.textContent = err.message || 'Login failed.';
+      }
+    });
+  </script>
+
+</body>
+</html>
